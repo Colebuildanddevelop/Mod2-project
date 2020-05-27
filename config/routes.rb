@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :comments
   resources :user_subreddits
   resources :posts
+  # get '/posts/:slug', to: 'post#show'
+
   resources :subreddits
   resources :users
 

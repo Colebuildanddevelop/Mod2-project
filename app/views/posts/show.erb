@@ -13,9 +13,10 @@
 <br>
 - <%= link_to @post.user.name, @post.user  %><br>
 <hr>
-<% if @post.user.id == session[user_id] %>
-<%= form_with model: @post, method: :delete  do |f| %>
-  <%= f.submit "Delete post" %>  
+<% if @post.user.id == session[:user_id] %>
+  <%= form_with model: @post, method: :delete  do |f| %>
+    <%= f.submit "Delete post" %>  
+  <% end %>
 <% end %>
 <% if session[:user_id] %>
       <% if User.find(session[:user_id]).favorites.find_by(post_id: @post.id) %> 
@@ -37,7 +38,8 @@
   <li>
     <%= comment.content %><br>
     - <%= link_to comment.user.name, comment.user %>
-  </li>
+    <br>
+  </li><br>
 <% end %> 
 <br>
 <h3>create comment</h3>

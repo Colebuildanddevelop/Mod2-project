@@ -5,11 +5,7 @@ class PostsController < ApplicationController
       @exist = false
       @post = current_post
     end
-
-    def current_post 
-      Post.find(params[:id])
-    end 
-
+    
     def new 
       @post = Post.new
       @subreddits = Subreddit.all
@@ -37,6 +33,10 @@ class PostsController < ApplicationController
         flash[:errors] = "Only the owner of the post can delete!"
         redirect_to post
       end
+    end 
+
+    def current_post 
+      Post.find(params[:id])
     end 
 
     private

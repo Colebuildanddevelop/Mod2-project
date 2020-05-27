@@ -1,3 +1,7 @@
+<% if flash[:errors] %>
+  <%= flash[:errors] %>
+<% end %> 
+
 <h1> change your profile </h1>
 <%= form_with model: @user do |f| %>
   <%= f.label :name %>

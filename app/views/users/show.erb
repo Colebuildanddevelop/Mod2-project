@@ -1,11 +1,22 @@
+<%= render "home/header" %>
+
 <%= @user.name %>
 <br>
 <%= @user.bio %>
 <br>
 <img src="<%= @user.profile_img_url %>" />
 <br>
-<%= link_to "Edit Profile", "/users/#{@user.id}/edit" %>
+<br>
+<p>total likes: <%= @user.total_rep %></p>
+<br>
 
+<% if @user.id == session[:user_id] %>
+  <%= link_to "Edit Profile", "/users/#{@user.id}/edit" %>
+<% end %>
+<br>
+<p>User Subreddits</p>
 <% @user.user_subreddits.each do |sr| %>
-  <li><%= sr.subreddit.name %></li>
+  <li>
+  <%= link_to sr.subreddit.name, sr.subreddit %>
+  </li>
 <% end %>

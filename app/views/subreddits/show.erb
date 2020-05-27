@@ -35,7 +35,8 @@
 <hr>
 
 
-
-<%= form_with model: @subreddit, method: :delete  do |f| %>
-<%= f.submit "Delete Subreddit" %>  
+<% if session[:user_id] == @subreddit.user.id %>
+  <%= form_with model: @subreddit, method: :delete  do |f| %>
+  <%= f.submit "Delete Subreddit" %>  
+  <% end %>
 <% end %>

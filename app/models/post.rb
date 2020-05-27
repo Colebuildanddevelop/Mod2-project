@@ -7,11 +7,15 @@ class Post < ApplicationRecord
     has_many :users, through: :favorites
 
     def self.top
-        Post.all.sort_by { |post| post.reputation }.reverse
+        self.all.sort_by { |post| post.reputation }.reverse
     end
 
     def self.least
-        Post.all.sort_by { |post| post.reputation }
+        self.all.sort_by { |post| post.reputation }
     end
+
+    def self.most_commented
+        self.all.max{|a, b| a.comments.count <=> b.comments.count}
+    end 
 
 end

@@ -1,26 +1,52 @@
 To do:
 
-create user login (x)
-hash passwords
-create user log out (x)
-create user edit (x)
-delete account (x)
-users need to be able to comment (x)
-users can delete their comments?
-confirm deleting an account
-conditionally render the delete button for posts, and subreddits?
+-destroy posts when you destroy user
 
-change post create to associate with user (x)
-make home page dynamic to user sessions (x)
-reputation system (x)
-associate users to subreddits (x)
-create methods in models, need 20 total
-    - Posts ordered by reputation
-    - Users total post reputation 
-    - 
-10 tests
+-hash passwords
+
+-errors for wrong log in
+
+---------------------
+
+-make urls more friendly?
+
+-users can delete their comments?
+
+-confirm deleting an account?
+
+---------------------
+
+-create methods in models, need 20 total
+    
+    - Posts ordered by least (x)(x)
+    - Posts ordered by most (x)(x)
+    - Post with most comments (x)()
+    
+    - Users total post reputation (x)(x)
+    - User's top post (x)()
+    - User's post by least (x)()
+    - Top User by reputation (x)()
+    - Least Popular User (x)()
+    - User with most post(x)()
+    - User with most comments (x)()
+    - User with most subreddits()()
+
+    - Subreddit top posts()()
+    - Subreddit least fav post()()
+    - Subreddit most post ()()
+    - Subreddit with most userts()()
+
+
+    
+- display
+  - users top posts
+  - users least posts
+  - top user
+  - least popular user
+
+
+-10 tests
 create validations
-    - user can only delete posts belonging to them (x)
     - 
 
 

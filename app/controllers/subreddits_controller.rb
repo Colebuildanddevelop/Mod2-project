@@ -26,7 +26,9 @@ class SubredditsController < ApplicationController
 
     def destroy
       sub = current_subreddit
+
       if session[:user_id] == sub.user.id
+        sub.posts.destroy_all
         sub.destroy
         redirect_to "/"
       else 

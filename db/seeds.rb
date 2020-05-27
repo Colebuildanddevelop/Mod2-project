@@ -38,7 +38,7 @@ c2 = Comment.create(content: "This post is bad", reputation: 0, user_id: u2.id, 
 c3 = Comment.create(content: "This post is very outstanding", reputation: 0, user_id: u3.id, post_id: p3.id)
 c4 = Comment.create(content: "This post is very very bad", reputation: 0, user_id: u3.id, post_id: p4.id)
 
-f1 = Favorite.create(post_id: p1.id, user_id: u1.id)
-f2 = Favorite.create(post_id: p2.id, user_id: u2.id)
-f3 = Favorite.create(post_id: p3.id, user_id: u3.id)
-f4 = Favorite.create(post_id: p3.id, user_id: u1.id)
+# f1 = Favorite.create(post_id: p1.id, user_id: u1.id)
+# f2 = Favorite.create(post_id: p2.id, user_id: u2.id)
+# f3 = Favorite.create(post_id: p3.id, user_id: u3.id)
+# f4 = Favorite.create(post_id: p3.id, user_id: u1.id)

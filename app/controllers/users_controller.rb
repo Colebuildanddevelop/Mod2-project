@@ -20,8 +20,13 @@ class UsersController < ApplicationController
 
     def update
         @user = current_user
-        @user.update(user_params)
-        redirect_to @user
+        if session[:id] == @user.id
+          @user.update(user_params)
+          redirect_to @user
+        else
+          flash[:errors] = "You must be logged in as #{@user.name} to edit!"
+          redirect_to "/users/#{@user.id}/edit"
+        end 
     end
 
     def destroy 

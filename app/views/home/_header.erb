@@ -1,6 +1,6 @@
 <%= link_to "Home", "/" %>--
 <% Subreddit.all.each do |s|%>
-<%= link_to s.name, s %>
+<%= link_to s.name, s %>, 
 <% end %>--
 
 <% if session[:user_id] %>
