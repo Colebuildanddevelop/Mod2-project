@@ -1,0 +1,23 @@
+<%= render 'header' %>
+
+<%= link_to "Top Posts", "/top" %>-
+<%= link_to "Least Popular Posts", "/least" %>
+
+<% @posts.each do |p| %>
+<li>
+<%= p.reputation %> <%= link_to p.title, p %>
+</li>
+  
+<% end %>
+
+<br>
+
+<% if session[:user_id] %>
+
+<%= link_to "Create New Subreddit", "/subreddits/new"  %>
+
+<% end %>
+
+
+<p><%= session[:user_id]  %></p>
+

@@ -1,0 +1,41 @@
+<% if flash[:errors] %>
+  <%= flash[:errors] %>
+<% end %> 
+
+<p><%= link_to "Home", "/" %></p>
+<hr>
+<h1><%= @subreddit.name %></h1>
+<h2><%= @subreddit.description %></h2>
+<h3>creator: <%= @subreddit.user.name %></h2>
+
+<% if session[:user_id] %>
+  <% if !@subreddit.users.include?(@user) %>
+    <%= form_with method: :patch, url: subreddit_path do |f| %>
+    <%= f.submit "subscribe" %>  
+    <% end %>
+  <% else %>
+    <%= form_with method: :patch, url: subreddit_path do |f| %>
+    <%= f.submit "Unsubscribe" %>  
+    <% end %>
+  <% end %>
+<% end %>
+
+<br>
+<%= link_to "create post", '/posts/new' %>
+<hr>
+
+<br>
+<% @subreddit.posts.each do |p| %>
+<li>
+    <%= link_to p.title, p %>
+</li>  
+<% end %>
+
+
+<hr>
+
+
+
+<%= form_with model: @subreddit, method: :delete  do |f| %>
+<%= f.submit "Delete Subreddit" %>  
+<% end %>

@@ -1,0 +1,17 @@
+<% if flash[:errors] %>
+<%= flash[:errors] %>
+<% end %> 
+
+<%= form_with model: @user, method: :post, url: "/login" do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br>  
+  <%= f.label :password %>
+  <%= f.text_field :password %>
+  <br>
+  <%= f.submit "Login" %>
+
+<% end %>
+
+<%= link_to "Create New User", "/users/new" %>
+

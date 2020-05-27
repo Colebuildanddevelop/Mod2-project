@@ -1,0 +1,11 @@
+<%= @user.name %>
+<br>
+<%= @user.bio %>
+<br>
+<img src="<%= @user.profile_img_url %>" />
+<br>
+<%= link_to "Edit Profile", "/users/#{@user.id}/edit" %>
+
+<% @user.user_subreddits.each do |sr| %>
+  <li><%= sr.subreddit.name %></li>
+<% end %>

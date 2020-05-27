@@ -1,0 +1,19 @@
+<% if flash[:errors] %>
+  <p><%= flash[:errors] %></p>
+<% end %> 
+
+<p>Create a new Post</p>
+
+<%= form_with model: @post do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <br> 
+  <%= f.label :content %>
+  <%= f.text_field :content %>
+  <br> 
+
+  <%= f.label "Chose a Subreddit" %>
+  <%= f.collection_select :subreddit_id, @subreddits, :id, :name %>
+
+  <%= f.submit %>
+<% end %>

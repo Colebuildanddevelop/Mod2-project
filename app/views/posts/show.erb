@@ -1,0 +1,54 @@
+<% if flash[:errors] %>
+  <%= flash[:errors] %>
+<% end %> 
+
+<%= render "home/header" %>
+
+<h1><%= @post.title %></h1>
+
+<br>
+<h2><%= @post.content %></h2>
+<br>
+<h3>Favorites <%= @post.reputation %></h3>
+<br>
+- <%= link_to @post.user.name, @post.user  %><br>
+<hr>
+<% if @post.user.id == session[user_id] %>
+<%= form_with model: @post, method: :delete  do |f| %>
+  <%= f.submit "Delete post" %>  
+<% end %>
+<% if session[:user_id] %>
+      <% if User.find(session[:user_id]).favorites.find_by(post_id: @post.id) %> 
+        <%= form_with model: @post, method: :delete, url: "/favorites/#{User.find(session[:user_id]).favorites.find_by(post_id: @post.id).id}"  do |f| %>
+          <%= f.hidden_field :id, :value => @post.id %>
+          <%= f.submit "Unlike Post" %>  
+        <% end %>
+      <% else %>  
+        <%= form_with model: @post, method: :post, url: "/favorites"  do |f| %>
+          <%= f.hidden_field :id, :value => @post.id %>
+          <%= f.submit "Like Post" %>  
+        <% end %> 
+      <% end %>  
+<% end %>
+
+<br>
+<h3>Comments</h3>
+<% @post.comments.each do |comment| %>
+  <li>
+    <%= comment.content %><br>
+    - <%= link_to comment.user.name, comment.user %>
+  </li>
+<% end %> 
+<br>
+<h3>create comment</h3>
+<%= form_with method: :post, url: "/comments" do |f| %>
+  <%= f.hidden_field :post_id, :value => @post.id %>
+  <%= f.hidden_field :user_id, :value => session[:user_id] %>
+
+  <%= f.text_area :content %>
+  <%= f.submit %>
+
+<% end %> 
+
+
+    

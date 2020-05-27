@@ -1,0 +1,18 @@
+<h1> change your profile </h1>
+<%= form_with model: @user do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br>  
+  <%= f.label :bio %>
+  <%= f.text_field :bio %>
+  <br>
+  <%= f.label :profile_img_url %>
+  <%= f.text_field :profile_img_url %>
+  <br>
+  <%= f.submit %>
+
+<% end %>
+
+<%= form_with model: @user, method: :delete do |f| %>
+  <%= f.submit "delete account" %>
+<% end %>
