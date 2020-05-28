@@ -9,14 +9,43 @@
 <br>
 <p>total likes: <%= @user.total_rep %></p>
 <br>
-
-<% if @user.id == session[:user_id] %>
-  <%= link_to "Edit Profile", "/users/#{@user.id}/edit" %>
-<% end %>
+<p>Top Post: <%= link_to @user.top_posts.first.title, @user.top_posts.first %></p>
 <br>
-<p>User Subreddits</p>
+<h3>User Subreddits</h3>
 <% @user.user_subreddits.each do |sr| %>
   <li>
   <%= link_to sr.subreddit.name, sr.subreddit %>
   </li>
 <% end %>
+<hr>
+<form action="/users/filter" method="post" id="filter_form" >
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%= hidden_field_tag :id, @user.id %>
+  <select name="filter" form="filter_form">
+    <option value="top posts">Top Posts</option>
+    <option value="worst posts">Worst Posts</option>
+    <option value="comments">Comments</option>
+  </select>
+  <input type="submit" value="filter">
+</form>
+<br>
+<% if session[:filter] %>
+  <% if session[:filter]["name"] %>
+    <h3><%= session[:filter]["name"] %></h3>
+    <% session[:filter]["array"].each do |ele| %>
+      <% if session[:filter]["name"] != "Comments" %>
+        <li><%= link_to ele["title"], "/posts/#{ele["id"]}"%></li>
+      <% else %>
+        <li><%= link_to ele["content"], "/posts/#{ele["post_id"]}" %></li>
+      <% end %>
+    <% end %> 
+  <% end %>
+<% end %>
+<hr>
+
+
+
+<% if @user.id == session[:user_id] %>
+  <%= link_to "Edit Profile", "/users/#{@user.id}/edit" %>
+<% end %>
+<br>

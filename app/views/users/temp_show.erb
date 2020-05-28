@@ -1,0 +1,12 @@
+<% if $filter %>
+  <% if $filter["name"] %>
+    <h3><%= $filter["name"] %></h3>
+    <% $filter["array"].each do |ele| %>
+      <% if $filter["name"] != "Comments" %>
+        <li><%= link_to ele["title"], "/posts/#{ele["id"]}"%></li>
+      <% else %>
+        <li><%= link_to ele["content"], "/posts/#{ele["post_id"]}" %></li>
+      <% end %>
+    <% end %> 
+  <% end %>
+<% end %>

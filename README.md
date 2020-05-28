@@ -1,18 +1,19 @@
 To do:
 
--destroy posts when you destroy user
 
--hash passwords
 
--errors for wrong log in
+
 
 ---------------------
+- password security? 
 
--make urls more friendly?
+- make urls more friendly?
 
--users can delete their comments?
+- users can delete their comments?
 
--confirm deleting an account?
+- confirm deleting an account?
+
+- 
 
 ---------------------
 
@@ -20,35 +21,37 @@ To do:
     
     - Posts ordered by least (x)(x)
     - Posts ordered by most (x)(x)
-    - Post with most comments (x)()
+    - Post with most comments (x)(x)
     
     - Users total post reputation (x)(x)
-    - User's top post (x)()
-    - User's post by least (x)()
-    - Top User by reputation (x)()
+    - User's top post (x)(x)
+    - User's post by least (x)(x)
+    - Top User by reputation (x)(x)
     - Least Popular User (x)()
-    - User with most post(x)()
-    - User with most comments (x)()
-    - User with most subreddits()()
+    - User with most post(x)(x)
+    - User with most comments (x)(x)
+    - User with most subreddits(x)(x)
 
-    - Subreddit top posts()()
-    - Subreddit least fav post()()
-    - Subreddit most post ()()
-    - Subreddit with most userts()()
-
-
+    - Subreddit top posts(x)()
+    - Subreddit least fav post(x)()
+    - Subreddit most post (x)(x)
+    - Subreddit with most userts(x)(x)
     
-- display
-  - users top posts
-  - users least posts
-  - top user
-  - least popular user
 
 
 -10 tests
 create validations
     - 
 
+
+
+----------
+add image attribute to post migration
+add image attribute to seed files
+add image to show page
+add image attribute to create posts
+add image attr to edit posts
+add image validation ? 
 
 
 

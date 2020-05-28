@@ -1,11 +1,20 @@
+<% if flash[:errors] %>
+  <% flash[:errors].each do |e| %>
+    <%= e %> 
+  <% end %>
+<% end %> 
+
 <p>create new user</p>
 
 <%= form_with model: @user do |f| %>
-<%= f.label :name %>
+<%= f.label :username %>
 <%= f.text_field :name %>
 <br>
 <%= f.label :password %>
-<%= f.text_field :password %>
+<%= f.password_field :password %>
+<br>
+<%= f.label :confirm_password %>
+<%= f.password_field :confirm_password %>
 <br>
 <%= f.label :bio %>
 <%= f.text_field :bio %>

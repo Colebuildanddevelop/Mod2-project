@@ -13,6 +13,12 @@ class HomeController < ApplicationController
         @least_p = Post.least
     end
 
+    def scores
+        @users = User.all
+        @subreddits = Subreddit.all
+        @posts = Post.all
+    end
+
 
 
 

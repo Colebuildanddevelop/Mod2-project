@@ -8,6 +8,9 @@ class User < ApplicationRecord
     has_many :favorites
     # has_many :posts, through: :favorites
 
+    validates :name, :password, presence: true
+    validates :name, uniqueness: true
+
     def total_rep
         self.posts.map { |post| post.reputation }.sum
     end
@@ -17,7 +20,7 @@ class User < ApplicationRecord
     end 
 
     def least_posts
-      self.posts.sort_by { |post| post.reputation }.reverse
+      self.posts.sort_by { |post| post.reputation }
     end 
 
     def self.top_user
@@ -43,6 +46,16 @@ class User < ApplicationRecord
     def self.most_posts
         self.all.max{|a, b| a.total_posts <=> b.total_posts }
     end 
+
+
+    def total_subreddits
+        self.subreddits.size
+    end
+
+    def self.most_subreddits
+        self.all.max{|a, b| a.total_subreddits <=> b.total_subreddits }
+    end
+
 
 end
 

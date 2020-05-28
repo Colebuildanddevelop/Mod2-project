@@ -6,8 +6,10 @@
 <hr>
 <h1><%= @subreddit.name %></h1>
 <h2><%= @subreddit.description %></h2>
-<h3>creator: <%= @subreddit.user.name %></h2>
-
+<% if @subreddit.user %>
+  <h3>creator: <%= link_to @subreddit.user.name, @subreddit.user %></h2>
+<% end %>
+  
 <% if session[:user_id] %>
   <% if !@subreddit.users.include?(@user) %>
     <%= form_with method: :patch, url: subreddit_path do |f| %>
@@ -19,12 +21,15 @@
     <% end %>
   <% end %>
 <% end %>
-
 <br>
-<%= link_to "create post", '/posts/new' %>
+<p>Posts</p>
 <hr>
+<% if session[:user_id] %>
+  <br>
+  <%= link_to "create post", '/posts/new' %>
+  <hr>
+<% end %>
 
-<br>
 <% @subreddit.posts.each do |p| %>
 <li>
     <%= link_to p.title, p %>
@@ -34,9 +39,10 @@
 
 <hr>
 
-
-<% if session[:user_id] == @subreddit.user.id %>
-  <%= form_with model: @subreddit, method: :delete  do |f| %>
-  <%= f.submit "Delete Subreddit" %>  
+<% if @subreddit.user %>
+  <% if session[:user_id] == @subreddit.user.id %>
+    <%= form_with model: @subreddit, method: :delete  do |f| %>
+    <%= f.submit "Delete Subreddit" %>  
+    <% end %>
   <% end %>
 <% end %>

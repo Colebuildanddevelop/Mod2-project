@@ -41,7 +41,7 @@ class PostsController < ApplicationController
 
     private
     def post_params 
-        params.require(:post).permit(:title, :content, :subreddit_id)
+        params.require(:post).permit(:title, :content, :subreddit_id, :image_url)
     end
 
 end
