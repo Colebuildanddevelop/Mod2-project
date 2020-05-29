@@ -1,13 +1,19 @@
 <%= render 'header' %>
 
-<%= link_to "Top Posts", "/top" %>-
-<%= link_to "Least Popular Posts", "/least" %>
+<div style="display:flex;padding:10px">
+  <p style="display:inline;flex-grow:1"><%= link_to "Top Posts", "/top" %></p>
+  <p style="display:inline"><%= link_to "Least Popular Posts", "/least" %></p>
+</div>
+<h1>Worst Posts LOL!</h1>
 
 <% @least_p.each do |p| %>
-<li>
-<%= p.reputation %> <%= link_to p.title, p %>
-</li>
-  
+  <div class="post_box">
+    <a class="post_link" href=<%= "/posts/#{p.id}" %>>
+      <h2 style="text-align:center"><%= p.title %></h2>
+      <img src="<%= p.image_url %>" />
+      <p style="text-align:center">likes: <%= p.reputation %> || comments <%= p.comments.count %></p> 
+    </a>
+  </div>  
 <% end %>
 
 <br>

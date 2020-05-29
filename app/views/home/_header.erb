@@ -1,15 +1,35 @@
-<%= link_to "Home", "/" %>--
-<% Subreddit.all.each do |s|%>
-<%= link_to s.name, s %>- 
-<% end %>--
-<%= link_to 'Stats', "/scores" %>--
+<html>
+  <body>
+<div class="nav-container">
+  <ul class="nav-items">
+    <!-- Navigation -->
+    <li class="nav-item"><%= link_to "Home", "/" %></li>
+    
+    <!-- Dropdown menu -->
+    <li class="nav-item nav-item-dropdown">
+      <a class="dropdown-trigger" href="#">Subreddits</a>
+      <ul class="dropdown-menu">
+        <% Subreddit.all.each do |s| %>
+        <li class="dropdown-menu-item">
+            <%= link_to s.name, s %>
+        </li>
+        <% end %>
+      </ul>
+    </li>
+    <li class="nav-item"><%= link_to 'Stats', "/scores" %></li>
+    <li class="nav-item">
+            <% if session[:user_id] %>
+                <%= link_to "Profile", "/users/#{session[:user_id]}"  %>
+                <%= form_with method: 'delete', url: "/logout" do |f| %>
+                <%= f.submit "logout" %>
+                <% end %>
+            <% else %>
+                <%= link_to "Log In/New User", "/login"  %>
+            <% end %>
+    </li>
 
-<% if session[:user_id] %>
-    <%= link_to "Profile", "/users/#{session[:user_id]}"  %>
-    <%= form_with method: 'delete', url: "/logout" do |f| %>
-    <%= f.submit "logout" %>
-    <% end %>
-<% else %>
-    <%= link_to "Log In/New User", "/login"  %>
-<% end %>--
+  </ul>
+</div>
+</body>
+</html>
 <hr>

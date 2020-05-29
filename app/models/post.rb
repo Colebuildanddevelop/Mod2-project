@@ -18,4 +18,18 @@ class Post < ApplicationRecord
         self.all.max{|a, b| a.comments.count <=> b.comments.count}
     end 
 
+    def format_content
+        formatted_str_arr = []
+        self.content.split(" ").each do |word|
+            formatted_word = []
+            word.split("").each do |char|
+                if !((char == "[") || (char == "]") || (char == "\""))
+                  formatted_word << char
+                end 
+            end
+            formatted_str_arr << formatted_word.join("")
+        end 
+        formatted_str_arr.join(" ")
+    end
+
 end

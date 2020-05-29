@@ -1,15 +1,25 @@
 class UsersController < ApplicationController
     
-
-
     def show 
         @user = current_user
-        # @filter ||= nil
-        # # @filter = sessi
-        # # @filter ||= {
-        # #     name: "Top Posts",
-        # #     array: @user.top_posts
-        # #              }   
+        if session[:filter]
+          case session[:filter]
+          when "top posts"
+              @filter = {}
+              @filter[:name] = "Top Posts"
+              @filter[:array] = @user.top_posts
+          when "worst posts"
+              @filter = {
+                  name: "Worst Posts",
+                  array: @user.least_posts
+              }
+          when "comments"
+              @filter = {
+                  name: "Comments",
+                  array: @user.comments
+              }
+          end
+        end 
     end
 
     def new
@@ -18,23 +28,7 @@ class UsersController < ApplicationController
 
     def filter 
         @user = current_user
-        session[:filter] = {}
-        case params[:filter]
-        when "top posts"
-            session[:filter] = {}
-            session[:filter][:name] = "Top Posts"
-            session[:filter][:array] = @user.top_posts
-        when "worst posts"
-            session[:filter] = {
-                name: "Worst Posts",
-                array: @user.least_posts
-            }
-        when "comments"
-            session[:filter] = {
-                name: "Comments",
-                array: @user.comments
-            }
-        end
+        session[:filter] = params[:filter]
         redirect_to @user 
     end 
 

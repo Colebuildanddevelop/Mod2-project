@@ -5,10 +5,11 @@
 <%= render "home/header" %>
 
 <h1><%= @post.title %></h1>
-<img src="<%= @post.image_url %>" />
-
+<div style="width:50%;margin:auto">
+  <img src="<%= @post.image_url %>" />
+</div>
 <br>
-<h2><%= @post.content %></h2>
+<p style="width:70%;margin:auto"><%= @post.format_content %></p>
 <br>
 <h3>Favorites <%= @post.reputation %></h3>
 <br>
@@ -34,6 +35,14 @@
 <% end %>
 
 <br>
+<%= form_with method: :post, url: "/comments" do |f| %>
+  <%= f.hidden_field :post_id, :value => @post.id %>
+  <%= f.hidden_field :user_id, :value => session[:user_id] %>
+
+  <%= f.text_area :content %><br>
+  <%= f.submit "Post comment!"%>
+
+<% end %> 
 <h3>Comments</h3>
 <% @post.comments.each do |comment| %>
   <li>
@@ -43,15 +52,7 @@
   </li><br>
 <% end %> 
 <br>
-<h3>create comment</h3>
-<%= form_with method: :post, url: "/comments" do |f| %>
-  <%= f.hidden_field :post_id, :value => @post.id %>
-  <%= f.hidden_field :user_id, :value => session[:user_id] %>
 
-  <%= f.text_area :content %>
-  <%= f.submit %>
-
-<% end %> 
 
 
     

@@ -46,11 +46,11 @@ create validations
 
 
 ----------
-add image attribute to post migration
-add image attribute to seed files
-add image to show page
-add image attribute to create posts
-add image attr to edit posts
+add image attribute to post migration x
+add image attribute to seed files x 
+add image to show page x
+add image attribute to create posts 
+add image attr to edit posts 
 add image validation ? 
 
 
