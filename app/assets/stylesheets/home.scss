@@ -60,6 +60,7 @@ li {
     float:right;
     margin-right: 20px;
     color: black;
+    margin-top: 4px;
     
 }
 
@@ -67,6 +68,7 @@ li {
   float:right;
   margin-right: 20px;
   color: black;
+  margin-top: 4px;
   
 }
 
@@ -124,5 +126,16 @@ li {
   
   &:hover {
     background-color: darken(rgb(255, 255, 255), 8%);
+  }
+}
+
+.dropdown-menu-item2 {
+  cursor: pointer;
+  padding: 1em;
+  text-align: center;
+  background-color: darken(rgb(211, 211, 211), $amount: 10%);
+  
+  &:hover {
+    background-color: rgb(255, 255, 255);
   }
 }

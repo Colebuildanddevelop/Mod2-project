@@ -3,21 +3,23 @@
 <% end %> 
 <%= render "home/header" %>
 
-<p>Create a new Post</p>
+<h1>Create a new Post</h1>
+<div style="margin:auto;width:50%;text-align:center">
 
 <%= form_with model: @post do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+  <h4 style="margin-bottom:0px"><%= f.label :title %><br></h4>
+  <%= f.text_field :title, style: 'width: 60%;margin-bottom:10px' %>
   <br> 
-  <%= f.label :content %>
-  <%= f.text_field :content %>
+  <h4 style="margin-bottom:0px"><%= f.label :content %><br></h4>
+  <%= f.text_field :content, style: 'width: 60%;margin-bottom:10px' %>
   <br> 
-  <%= f.label :image_url %>
-  <%= f.text_field :image_url %>
+  <h4 style="margin-bottom:0px"><%= f.label :image_url %><br></h4>
+  <%= f.text_field :image_url, style: 'width: 60%;margin-bottom:10px' %>
   <br> 
 
-  <%= f.label "Chose a Subreddit" %>
-  <%= f.collection_select :subreddit_id, @subreddits, :id, :name %>
+  <h4 style="margin-bottom:0px"><%= f.label "Chose a Subreddit" %><br></h4>
+  <%= f.collection_select :subreddit_id, @subreddits, :id, :name, {}, {style: 'width: 60%;margin-bottom:10px'} %><br>
 
-  <%= f.submit %>
+  <%= f.submit "Create a Post", style: 'width:60%;margin-bottom:10px;border: solid 2px;background-color:white;margin-top:20px'%>
 <% end %>
+</div>

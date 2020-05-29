@@ -33,14 +33,25 @@ class UsersController < ApplicationController
     end 
 
     def create
-        @user = User.new(
-          name: params[:user][:name],
-          password: params[:user][:password],
-          bio: params[:user][:bio],
-          profile_img_url: params[:user][:profile_img_url]
-        )
+        if params[:user][:profile_img_url] = ""
+            @user = User.new(
+            name: params[:user][:name],
+            password: params[:user][:password],
+            bio: params[:user][:bio],
+            profile_img_url: "https://picsum.photos/id/#{rand(1..300)}/200"
+            )
+        else
+            @user = User.new(
+            name: params[:user][:name],
+            password: params[:user][:password],
+            bio: params[:user][:bio],
+            profile_img_url: params[:user][:profile_img_url]
+            )
+        end
+
         if @user.valid?  
           if params[:user][:password] == params[:user][:confirm_password]
+            @user.save
             session[:user_id] = @user.id 
             redirect_to "/"
           else 
@@ -58,8 +69,9 @@ class UsersController < ApplicationController
     end
 
     def update
+        # byebug
         @user = current_user
-        if session[:id] == @user.id
+        if session[:user_id] == @user.id
           @user.update(user_params)
           redirect_to @user
         else

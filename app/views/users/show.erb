@@ -1,23 +1,40 @@
 <%= render "home/header" %>
 
-<%= @user.name %>
 <br>
-<%= @user.bio %>
+<div style="display:block;width:100%">
+  <h1 style="display:block"><%= @user.name %> </h1>
+  <% if @user.id == session[:user_id] %>
+    <div style="text-align:end;margin-top:-45px;display:block">
+      <%= link_to "Edit Profile", "/users/#{@user.id}/edit", style: "margin:10px" %>
+    </div>
+  <% end %>
+</div>
+
+<p style="text-align:center">total likes: <%= @user.total_rep %></p>
 <br>
-<img src="<%= @user.profile_img_url %>" />
+<img style="width:50%;margin:auto" src="<%= @user.profile_img_url %>" />
 <br>
+
+<h3 style="text-align:center;width:50%;margin:auto" ><%= @user.bio %></h3>
 <br>
-<p>total likes: <%= @user.total_rep %></p>
-<br>
-<p>Top Post: <%= link_to @user.top_posts.first.title, @user.top_posts.first %></p>
-<br>
-<h3>User Subreddits</h3>
-<% @user.user_subreddits.each do |sr| %>
-  <li>
-  <%= link_to sr.subreddit.name, sr.subreddit %>
-  </li>
-<% end %>
+<% if @user.posts.length > 0 %>
 <hr>
+  <h3 style="padding-left: 10px">Featured Post: <%= link_to @user.top_posts.first.title, @user.top_posts.first %></h3>
+<% end %>
+<% if @user.subreddits.length > 0 %>
+  
+  <div style="padding-left: 10px">
+    <h3>User Subreddits</h3>
+      <% @user.subreddits.each do |sr| %>
+        <li>
+        <%= link_to sr.name, sr %>
+        </li>
+      <% end %>
+<% end %>
+</div>
+<hr>
+
+<div style="padding-left: 10px">
 <form action="/users/filter" method="post" id="filter_form" >
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <%= hidden_field_tag :id, @user.id %>
@@ -26,8 +43,10 @@
     <option value="worst posts">Worst Posts</option>
     <option value="comments">Comments</option>
   </select>
-  <input type="submit" value="filter">
+  <input type="submit" value="Filter" style="border: solid 1px;text-decoriation:none;">
 </form>
+<div>
+
 <br>
 <% if @filter %>
   <% if @filter[:name] %>
@@ -43,9 +62,3 @@
 <% end %>
 <hr>
 
-
-
-<% if @user.id == session[:user_id] %>
-  <%= link_to "Edit Profile", "/users/#{@user.id}/edit" %>
-<% end %>
-<br>

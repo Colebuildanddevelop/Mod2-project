@@ -1,46 +1,47 @@
 <%= render 'header' %>
 
-
+<div  style= "width:40%;margin:auto;border:line">
 <h1>User Stats</h1>
 
 <p>Most Reputation</p>
-<%= link_to @users.top_user.name, @users.top_user %>
+<%= link_to "#{@users.top_user.name} - #{@users.top_user.total_rep} likes", @users.top_user %>
 <br>
 
 <p>Most Posts</p>
-<%= link_to @users.most_posts.name, @users.most_posts %>
+<%= link_to "#{@users.most_posts.name} - #{@users.most_posts.posts.length} posts", @users.most_posts %>
 <br>
 
 <p>Most Comments</p>
-<%= link_to @users.most_comments.name,@users.most_comments %>
+<%= link_to "#{@users.most_comments.name} - #{@users.most_comments.total_comments} comments", @users.most_comments %>
 <br>
 
 <p>Most Subreddits</p>
-<%= link_to @users.most_subreddits.name, @users.most_subreddits %>
+<%= link_to "#{@users.most_subreddits.name} - #{@users.most_subreddits.subreddits.length} subreddits", @users.most_subreddits %>
 <br>
 <hr>
 
 <h1>Post Stats</h1>
 
 <p>Most Reputation</p>
-<%= link_to @posts.top.first.title, @posts.top.first %>
+<%= link_to "#{@posts.top.first.title} - #{@posts.top.first.reputation} likes", @posts.top.first %>
 <br>
 
 <p>Most Comments</p>
-<%= link_to @posts.most_commented.title, @posts.most_commented %>
+<%= link_to "#{@posts.most_commented.title}", @posts.most_commented %>
 <br>
 
 <hr>
-
+  
 <h1>Subreddit Stats</h1>
 
 <p>Most Posts</p>
-<%= link_to @subreddits.most_posts.name, @subreddits.most_posts %>
+<%= link_to "#{@subreddits.most_posts.name} - #{@subreddits.most_posts.posts.length} posts", @subreddits.most_posts %>
 <br>
 
 <p>Most Users</p>
-<%= link_to @subreddits.most_users.name, @subreddits.most_users  %>
+<%= link_to "#{@subreddits.most_users.name} - #{@subreddits.most_users.users.length} users", @subreddits.most_users  %>
 
 
-
-
+<br>
+</div>
+<br>

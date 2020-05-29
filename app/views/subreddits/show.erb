@@ -5,47 +5,53 @@
 
 
 <%= render "home/header" %>
-<hr>
-<% if @subreddit.user %>
-  <h3>creator: <%= link_to @subreddit.user.name, @subreddit.user %></h2>
-<% end %>
-<h1><%= @subreddit.name %></h1>
-<h4><%= @subreddit.description %></h4>
 
-  
-<% if session[:user_id] %>
-  <% if !@subreddit.users.include?(@user) %>
-    <%= form_with method: :patch, url: subreddit_path do |f| %>
-    <%= f.submit "subscribe" %>  
-    <% end %>
-  <% else %>
-    <%= form_with method: :patch, url: subreddit_path do |f| %>
-    <%= f.submit "Unsubscribe" %>  
+<div style="display:flex">
+  <% if @subreddit.user %>
+    <div style="display:inline;flex-grow:1;padding-left:18.7px">
+      <h3><%= link_to @subreddit.user.name, @subreddit.user %></h3>
+    </div>
+  <% end %>
+  <% if session[:user_id] %>
+    <% if !@subreddit.users.include?(@user) %>
+      <div style="display:inline;padding:18.7px">
+        <%= form_with method: :patch, url: subreddit_path do |f| %>
+        <%= f.submit "subscribe" %>  
+      </div>
+      <% end %>
+    <% else %>
+      <div style="display:inline;padding:18.7px">
+        <%= form_with method: :patch, url: subreddit_path do |f| %>
+        <%= f.submit "Unsubscribe"%>  
+      </div>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
-<br>
-<p>Posts</p>
-<hr>
-<% if session[:user_id] %>
-  <br>
-  <%= link_to "create post", '/posts/new' %>
-  <hr>
-<% end %>
+</div>
 
+<h1><%= @subreddit.name %></h1>
+<h2 style="text-align:center"><%= @subreddit.description %></h2>
+<h3 style="text-align:center">Members: <%= @subreddit.users.count %></h3>
+  
+<hr>
+<h3 style="padding-left:18.7px">Posts: </h3>
 <% @subreddit.posts.each do |p| %>
-<li>
-    <%= link_to p.title, p %>
+<li style="padding-left:40px">
+    <%= link_to p.title, p %> - <%= p.user.name %>
 </li>  
 <% end %>
-
-
 <hr>
+
+<% if session[:user_id] %>
+  <br>
+  <%= link_to "create post", '/posts/new', style: "padding-left:18.7px" %>
+<% end %>
+
 
 <% if @subreddit.user %>
   <% if session[:user_id] == @subreddit.user.id %>
     <%= form_with model: @subreddit, method: :delete  do |f| %>
-    <%= f.submit "Delete Subreddit" %>  
+    <%= f.submit "Delete Subreddit", style: "padding-left:18.7px"%>  
     <% end %>
   <% end %>
 <% end %>

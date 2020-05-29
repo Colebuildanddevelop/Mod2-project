@@ -1,59 +1,70 @@
-<% if flash[:errors] %>
-  <%= flash[:errors] %>
-<% end %> 
-
 <%= render "home/header" %>
 
-<h5><%=link_to @post.subreddit.name, "/subreddits/#{@post.subreddit.id}" %></h5>
-<h1><%= @post.title %></h1>
+<h5 style="width:50%;margin:auto;margin-top:20px"><%=link_to @post.subreddit.name, "/subreddits/#{@post.subreddit.id}" %> · Posted by: <%= link_to @post.user.name, @post.user, style: "font-color: gray" %>
+</h5>
+<h1 style="width:50%;margin:auto;text-align:left"><%= @post.title %></h1>
 <div style="width:50%;margin:auto">
   <img src="<%= @post.image_url %>" />
 </div>
+<div style="width:50%;margin:auto;display:flex">
+  <% if session[:user_id] %>
+        <% if User.find(session[:user_id]).favorites.find_by(post_id: @post.id) %> 
+          <div style = "display:inline;flex-grow:1">
+
+            <%= form_with model: @post, method: :delete, url: "/favorites/#{User.find(session[:user_id]).favorites.find_by(post_id: @post.id).id}"  do |f| %>
+              <%= f.hidden_field :id, :value => @post.id %>
+              <%= f.submit "Unlike Post" %>  
+            <% end %>
+          </div>
+        <% else %>  
+          <div style = "display:inline;flex-grow:1">
+            <%= form_with model: @post, method: :post, url: "/favorites"  do |f| %>
+              <%= f.hidden_field :id, :value => @post.id %>
+              <%= f.submit "Like Post" %>  
+            <% end %>
+          </div> 
+        <% end %>  
+  <% end %>
+  <p style="display:inline;margin-top:0px">Favorites: <%= @post.reputation %></p>
+</div>
 <br>
-<p style="width:70%;margin:auto"><%= @post.format_content %></p>
+<p style="width:50%;margin:auto"><%= @post.format_content %></p>
 <br>
-<h3>Favorites <%= @post.reputation %></h3>
 <br>
-- <%= link_to @post.user.name, @post.user  %><br>
 <hr>
+<div style="padding-left:10px;">
 <% if @post.user.id == session[:user_id] %>
   <%= form_with model: @post, method: :delete  do |f| %>
     <%= f.submit "Delete post" %>  
   <% end %>
 <% end %>
-<% if session[:user_id] %>
-      <% if User.find(session[:user_id]).favorites.find_by(post_id: @post.id) %> 
-        <%= form_with model: @post, method: :delete, url: "/favorites/#{User.find(session[:user_id]).favorites.find_by(post_id: @post.id).id}"  do |f| %>
-          <%= f.hidden_field :id, :value => @post.id %>
-          <%= f.submit "Unlike Post" %>  
-        <% end %>
-      <% else %>  
-        <%= form_with model: @post, method: :post, url: "/favorites"  do |f| %>
-          <%= f.hidden_field :id, :value => @post.id %>
-          <%= f.submit "Like Post" %>  
-        <% end %> 
-      <% end %>  
-<% end %>
+
 
 <br>
-<%= form_with method: :post, url: "/comments" do |f| %>
-  <%= f.hidden_field :post_id, :value => @post.id %>
-  <%= f.hidden_field :user_id, :value => session[:user_id] %>
-
-  <%= f.text_area :content %><br>
-  <%= f.submit "Post comment!"%>
-
-<% end %> 
-<h3>Comments</h3>
-<% @post.comments.each do |comment| %>
-  <li>
-    <%= comment.content %><br>
-    - <%= link_to comment.user.name, comment.user %>
-    <br>
-  </li><br>
-<% end %> 
-<br>
-
+<div style="">
+  <p style="color:red">
+    <% if flash[:errors] %>
+      <%= flash[:errors] %>
+    <% end %> 
+  </p>
+  <%= form_with method: :post, url: "/comments" do |f| %>
+    <%= f.hidden_field :post_id, :value => @post.id %>
+    <%= f.hidden_field :user_id, :value => session[:user_id] %>
+  
+    <%= f.text_area :content %><br>
+    <%= f.submit "Post comment!"%>
+  <% end %> 
+  <h3>Comments</h3>
+  <% @post.comments.each do |comment| %>
+    <li>
+      <%= comment.content %><br>
+      - <%= link_to comment.user.name, comment.user %>
+      <br>
+    </li><br>
+  <% end %> 
+  <br>
+</div>
+</div>
 
 
     

@@ -49,10 +49,17 @@ create validations
 add image attribute to post migration x
 add image attribute to seed files x 
 add image to show page x
-add image attribute to create posts 
-add image attr to edit posts 
+add image attribute to create posts x
+add image attr to edit posts x
 add image validation ? 
 
+-------------\
+fix errors
+format new post page x 
+format new subreddit page x 
+format fields so that label is inside 
+user show page x
+post show page x
 
 
 

@@ -5,6 +5,10 @@ class CommentsController < ApplicationController
       if session[:user_id]
         Comment.create(comment_params)
         redirect_to @post
+
+      else
+        flash[:errors] = "You must be logged in to create a comment!"
+        redirect_to @post
       end
     end 
 
