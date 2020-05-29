@@ -17,7 +17,7 @@
       </ul>
     </li>
     <li class="nav-item"><%= link_to 'Stats', "/scores" %></li>
-    <li class="nav-item">
+    <li class="nav-log">
             <% if session[:user_id] %>
                 <%= link_to "Profile", "/users/#{session[:user_id]}"  %>
                 <%= form_with method: 'delete', url: "/logout" do |f| %>
@@ -32,4 +32,3 @@
 </div>
 </body>
 </html>
-<hr>

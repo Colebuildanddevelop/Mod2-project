@@ -4,25 +4,27 @@
   <% end %>
 <% end %> 
 
-<p>create new user</p>
+<div style="margin:auto;width:50%;text-align:center">
+<h1>Create new user</h1>
 
 <%= form_with model: @user do |f| %>
-<%= f.label :username %>
-<%= f.text_field :name %>
+<h3><%= f.label :username %><br></h3>
+<%= f.text_field :name, style: 'width: 60%;margin-bottom:10px' %>
 <br>
-<%= f.label :password %>
-<%= f.password_field :password %>
+<h3><%= f.label :password %><br></h3>
+<%= f.password_field :password, style: 'width: 60%;margin-bottom:10px' %>
 <br>
-<%= f.label :confirm_password %>
-<%= f.password_field :confirm_password %>
+<h3><%= f.label :confirm_password %><br></h3>
+<%= f.password_field :confirm_password, style: 'width: 60%;margin-bottom:10px' %>
 <br>
-<%= f.label :bio %>
-<%= f.text_field :bio %>
+<h3><%= f.label :bio %><br></h3>
+<%= f.text_field :bio, style: 'width: 60%;margin-bottom:10px' %>
 <br>
-<%= f.label :profile_img_url %>
-<%= f.text_field :profile_img_url %>
+<h3><%= f.label :profile_img_url %><br></h3>
+<%= f.text_field :profile_img_url, style: 'width: 60%;margin-bottom:10px' %><br>
 
-<%= f.submit %>
+<%= f.submit style: 'width: 60%;background-color:white' %>
 
 <% end %>
 
+</div>

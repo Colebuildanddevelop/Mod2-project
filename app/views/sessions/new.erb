@@ -1,17 +1,18 @@
 <% if flash[:errors] %>
 <%= flash[:errors] %>
 <% end %> 
-
+<%= render "home/header" %>
+<div style="margin:auto;width:50%;text-align:center">
 <%= form_with model: @user, method: :post, url: "/login" do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+  
+  <h3><%= f.label :name %><br></h3>
+  <%= f.text_field :name, style: 'width: 60%'%>
   <br>  
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+  <h3><%= f.label :password %><br></h3>
+  <%= f.password_field :password, style: 'width: 60%'%>
   <br>
-  <%= f.submit "Login" %>
-
+  <h3><%= f.submit "Login", style: 'width: 60%;background-color:white'%></h3>
 <% end %>
-
-<%= link_to "Create New User", "/users/new" %>
-
+<br>
+<h4><%= link_to "Create New User", "/users/new" %></h4>
+</div>

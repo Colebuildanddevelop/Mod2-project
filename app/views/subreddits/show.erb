@@ -2,13 +2,16 @@
   <%= flash[:errors] %>
 <% end %> 
 
-<p><%= link_to "Home", "/" %></p>
+
+
+<%= render "home/header" %>
 <hr>
-<h1><%= @subreddit.name %></h1>
-<h2><%= @subreddit.description %></h2>
 <% if @subreddit.user %>
   <h3>creator: <%= link_to @subreddit.user.name, @subreddit.user %></h2>
 <% end %>
+<h1><%= @subreddit.name %></h1>
+<h4><%= @subreddit.description %></h4>
+
   
 <% if session[:user_id] %>
   <% if !@subreddit.users.include?(@user) %>
